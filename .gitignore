@@ -1,0 +1,27 @@
+# Variables de entorno y claves privadas
+.env
+**/.env
+.env.local
+.env.production
+.env.development
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node / Vue
+node_modules/
+dist/
+
+# Git
+.git/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/

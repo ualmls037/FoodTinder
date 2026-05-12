@@ -1,0 +1,19 @@
+
+
+
+  html, body, #app {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+
+
+body {
+  background-image: url('/fondo-comida.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}

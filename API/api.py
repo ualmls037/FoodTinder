@@ -96,6 +96,7 @@ def tipos(food):
         "tipos": resultados
     }
 
+
 @app.get("/macros")
 def macros(food):
     food_norm = normalizar(food)

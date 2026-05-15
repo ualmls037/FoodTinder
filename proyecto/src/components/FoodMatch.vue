@@ -516,9 +516,11 @@ pre {
 
 .input-buscador {
   width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
   box-sizing: border-box;
 }
 

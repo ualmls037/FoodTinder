@@ -35,7 +35,7 @@
           <p v-if="busquedaHecha" class="mensaje-error">{{mensaje}}</p>
         </div>
 
-        <div v-if="resultado!=null || mensaje==='Alimento no encontrado en la base de datos'">
+        <div v-if="busquedaHecha==true">
           <button @click="nuevaBusqueda" class="btn-nuevaBusqueda">Nueva Búsqueda</button>
         </div>
             
@@ -191,8 +191,11 @@
     }
 
     const mensaje=ref('')
+    const errorMensaje=ref('')
 
     async function buscar(){
+      errorMensaje.value=''
+  
         cargando.value=true
         alimentoseleccionado.value=''
         resultado.value = null
@@ -202,9 +205,16 @@
     
         const respuestaAPI= await fetch(`https://proyectoapi.orangeground-d354b437.swedencentral.azurecontainerapps.io/recomendar?${query}`)
          
-        const data: ResultadoAPI =await respuestaAPI.json()
+        const data =await respuestaAPI.json()
+        
+        if (!respuestaAPI.ok) {
+          mensaje.value = data.detail 
+          resultado.value = null
+          cargando.value=false
+          busquedaHecha.value=true
+          return
+        }
         resultado.value=data
-
         if (data.recomendaciones.length === 0) {
           mensaje.value = 'No se han encontrado recomendaciones para esos alimentos.'
           busquedaHecha.value=false
@@ -212,18 +222,17 @@
         }else{
           mensaje.value=''
         }
+      
 
-        if (!respuestaAPI.ok) {
-          mensaje.value = 'No se ha encontrado el alimento en la base de datos.'
-          resultado.value = null
-          busquedaHecha.value = true
-        } 
+
+      
       
 
       cargando.value=false
       busquedaHecha.value=true
 
     }
+  
     function nuevaBusqueda() {
       foods.value = []
       alimentoseleccionado1.value=[]
